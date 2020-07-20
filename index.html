@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap" rel="stylesheet">
+ <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+
+<style>
+body {
+	font-family: 'Lato', sans-serif;
+	background-color: burlywood;
+}
+h1 {
+	text-align: center;
+	font-size: 3em;
+}
+#quiz {
+	margin-left: 200px;
+	background: #8daee2;
+	padding: 10px 20px 10px 20px;
+	width: 400px;
+	border-radius: 20px;
+	float: left;
+	box-shadow: gray 5px 8px 8px;
+}
+input {
+	margin-bottom: 20px;
+	/* display: block; */
+}
+#button {
+	background: green;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	font-size: 16px;
+	transition-duration: .5s;
+	margin-top: 15px;
+}
+#button:hover {
+	background: white;
+	border: 1px solid green;
+	color: black;
+	cursor: pointer;
+}
+#after_submit {
+	visibility: hidden;
+	background: #80c7bdfa;
+	padding: 10px 20px 10px 20px;
+	width: 400px;
+	border-radius: 20px;
+	float: left;
+	margin-left: 220px;
+	font-size: 30px;
+	box-shadow: gray 5px 8px 8px;
+}
+#picture {
+	width: 375px;
+	height: 245px;
+}
+#q1 {
+	height: 25px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: none;
+	padding-left: 5px;
+} 
+#q2 {
+	height: 25px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: none;
+	padding-left: 5px;
+} 
+#q3 {
+	height: 25px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: none;
+	padding-left: 5px;
+}
+#q4 {
+	height: 25px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: none;
+	padding-left: 5px;
+}
+#q5 {
+	height: 25px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: none;
+	padding-left: 5px;
+}
+.btn-success {
+	background: #008000;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	font-size: 16px;
+	transition-duration: .5s;
+	margin-top: 15px;
+        }
+.btn-success:hover {
+	background: white;
+	border: 1px solid green;
+	color: black;
+	cursor: pointer;
+}	
+.q1 {
+	color: #db1212;
+}
+
+.answer {
+    border: 2px solid #fff;
+}
+
+.right {
+    border-color: #090;
+    color: #090;
+}
+
+.wrong {
+    border-color: #900;
+    color: #900;
+ }	
+
+</style>
+
+<title>Front-End Quiz!</title>
+
+<body>
+<h1><i class="fa fa-flash"> </i> Test you're skills <i class="fa fa-flash"></i></h1>
+<form id = "quiz" name = "quiz">
+
+<p class = "questions">What is the capital of Rhode Island?</p>
+<input id = "q1" type = "text" name = "question1" placeholder="Answer">
+<span id="icon1"></span>
+
+<p class = "questions">What is the capital of Connecticut</p>
+<input id = "q2" type = "text" name = "question2" placeholder="Answer">
+<span id="icon2"></span>
+
+<p class = "questions">What is the capital of New York?</p>
+<input id = "q3" type = "text" name = "question3" placeholder="Answer">
+<span id="icon3"></span>
+
+<p class = "questions">What is the capital of Arkansas?</p>
+<input id = "q4" type = "text" name = "question4" placeholder="Answer">
+<span id="icon4"></span>
+
+<p class = "questions">What is the capital of Las Vegas?</p>
+<input id = "q5" type = "text" name = "question5" placeholder="Answer">
+<span id="icon5"></span>
+<br>
+
+<input id = "button" type = "button" value = "I'm finished!" onclick = "check();">
+<button type="button" class="btn btn-success" onclick="window.location.href='index.html';">Clear</button>
+<button type="button" class="btn btn-success" onclick="window.location.href='qiz.html';">Version 2</button>
+
+</form>
+
+<div id = "after_submit">
+<p id = "number_correct"></p>
+<p id = "message"></p>
+<img id = "picture">
+</div>
+
+<script>
+    function gradeAnswer(field, isRight) {
+    let gradeClass = isRight ? "answer right" : "answer wrong";
+    let gradeIcon = isRight ? '<i class="fa fa-check right" aria-hidden="true"></i>' : '<i class="fa fa-thumbs-down wrong" aria-hidden="true"></i>';
+    document.getElementById("q" + field).className = gradeClass;
+    document.getElementById("icon" + field).innerHTML = gradeIcon;
+        }
+function check(){
+
+	var question1 = document.quiz.question1.value;
+	var question2 = document.quiz.question2.value;
+	var question3 = document.quiz.question3.value;
+	var question4 = document.quiz.question4.value;
+	var question5 = document.quiz.question5.value;
+	var correct = 0;
+
+
+	if (question1 == "Providence") {
+		correct++;
+		gradeAnswer("1", true);
+	}
+	else {
+		gradeAnswer(1,false);
+	}
+	if (question2 == "Hartford") {
+		correct++;
+		gradeAnswer("2", true);
+	}
+	else {
+		gradeAnswer(2,false);
+	}	
+	if (question3 == "Albany") {
+		correct++;
+		gradeAnswer("3", true);
+	}
+	else {
+		gradeAnswer(3,false);
+	}
+	if (question4 == "Little Rock") {
+		correct++;
+		gradeAnswer("4", true);
+	}
+	else {
+		gradeAnswer(4,false);
+	}
+	if (question5 == "Carson City") {
+		correct++;
+		gradeAnswer("5", true);
+	}
+	else {
+		gradeAnswer(5,false);
+	}
+	
+	var pictures = ["img/1.jpg", "img/2.jpg", "img/3.jpg","img/4.jpg","img/5.jpg","img/0.jpg"];
+	var messages = ["Fantastic!","Great job!", "That's just okay.", "Your getting better.","You really need to do better.","A sarcastic Wow.",];	
+	var score;
+
+	if (correct == 0) {
+		score = 5;
+	}
+
+	if (correct == 1) {
+		score = 4;
+	}
+
+	if (correct == 2) {
+		score = 3;
+	}
+
+	if (correct == 3) {
+		score = 2;
+	}
+	if (correct == 4) {
+		score = 1;
+	}
+	if (correct == 5) {
+		score = 0;
+	}
+
+	document.getElementById("after_submit").style.visibility = "visible";
+	document.getElementById("message").innerHTML = messages[score];
+	document.getElementById("number_correct").innerHTML = "You got " + correct + " correct.";
+	document.getElementById("picture").src = pictures[score];
+	}
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> 
+
+</body>
+</html>

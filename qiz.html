@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <title>Front-End Quiz!</title>
+    </head>
+
+
+    <style>
+
+    .answer {
+        border: 2px solid #fff;
+    }
+
+    .right {
+        border-color: #090;
+        color: #090;
+    }
+
+    .wrong {
+        border-color: #900;
+        color: #900;
+    }
+    h1 {
+    text-align: center;  
+    font-size: 4em;
+    font-family: 'Henny Penny', cursive;
+    }
+        h4 {
+            font-size: 2em;
+            font-family: 'Henny Penny', cursive;
+        }
+        .container {
+            background: linear-gradient(#849c2c6e,#32a9ee) fixed; 
+            margin-left: 8em;
+            margin-right: 8em;
+            border-radius: 20px;
+            box-shadow: rgb(59, 54, 54) 5px 5px 8px;
+            padding: 1em;
+        }
+
+        body {
+            text-align: center;
+            margin: 3em;
+            background: linear-gradient(#e7dd57,#4a8df2) fixed; 
+            font-family: 'Lato', sans-serif;       
+            
+        }
+
+        input {
+            background-color: #d3c946;
+            color: rgb(24, 22, 16);
+            border-color: -internal-light-dark-color(rgb(27, 16, 16), rgb(48, 155, 71));
+            border-radius: 7px;
+            font-size: 1.5em;
+            font-family: 'Henny Penny', cursive;
+    } 
+    .btn-warning {
+        background-color: rgba(231, 166, 45, 0.795);
+        font-size: 1.5em;
+        border-radius: 10px;
+        font-family: 'Henny Penny', cursive;
+    }
+    .btn-danger {
+        background-color: rgb(83, 153, 199);
+        font-size: 1.5em;
+        border-radius: 10px;
+        font-family: 'Henny Penny', cursive;   
+    }
+
+
+            
+    </style>
+
+
+    <body>
+        <div class="container">
+
+        <h1>Version 2</h1>
+        <h4>(For home work requirements)</h4>
+        
+        <div>
+        <label for="q1">What is the only mammal which can fly?</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a1">
+        <span id="icon1"></span>
+        </div>
+
+        <div>
+        <label for="q2">What is the largest country in the world</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a2">
+        <span id="icon2"></span>
+        </div>
+
+        <div>
+        <label for="q3">How many legs does an octopus have?</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a3">
+        <span id="icon3"></span>
+        </div>
+
+        <div>
+        <label for="q4">Which is the biggest desert in the world?</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a4">
+        <span id="icon4"></span>
+        </div>
+
+        <div>
+        <label for="q5">Is the sun a star or a planet?</label>
+        <input type="text" placeholder="Your Answer..." required="required" id="a5">
+        <span id="icon5"></span>
+        </div>
+        <br>
+
+        <p>
+            <button onclick="checkAnswers();" class="btn btn-primary">Check All</button>
+        </p>
+        <p>
+            <button onclick="clearAnswers();" class="btn btn-secondary">Clear Answers</button>
+        </p>
+        <button type="button" class="btn btn-success" onclick="window.location.href='index.html';">Back</button>
+    </div>
+
+        <script>
+        
+        function getAnswer(field) {
+            console.log(field);
+            let answer = document.getElementById(field);
+            return answer.value;
+        }
+
+        function checkAnswers() {
+            let answers = ["Bat", "Russia", 8, "Sahara", "Star"];
+
+            for (let i = 0; i < 5; i++) {
+                let fieldId = i + 1;
+                let answer = getAnswer("a" + fieldId);   
+                gradeAnswer(fieldId, answer == answers[i]);
+            }
+        }
+
+        function gradeAnswer(field, isRight) {
+            let gradeClass = isRight ? "answer right" : "answer wrong";
+            let gradeIcon = isRight ? '<i class="fa fa-check right" aria-hidden="true"></i>' : '<i class="fa fa-thumbs-down wrong" aria-hidden="true"></i>';
+            document.getElementById("a" + field).className = gradeClass;
+            document.getElementById("icon" + field).innerHTML = gradeIcon;
+        }
+
+        function clearAnswers() {
+            for (let i = 1; i < 6; i++) {
+                let field = document.getElementById("a" + i);
+                field.value = null;
+                field.className = null;
+                document.getElementById("icon" + i).innerHTML = null;
+            }
+        }
+
+        </script>
+
+    </body>
+</html>
